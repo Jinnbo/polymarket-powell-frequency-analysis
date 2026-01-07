@@ -1,0 +1,1 @@
+## Frequency Analysis on Jerome Powell's Introductory Statement and Q&A session from FOMC Meeting
