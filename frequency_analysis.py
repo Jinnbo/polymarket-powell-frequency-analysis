@@ -7,21 +7,29 @@ from collections import Counter, OrderedDict
 import pymupdf
 
 FILE_PATH = "transcripts/"
-DATA_FOLDER = "data/"
+DATA_FOLDER = "data"
 
 
-def save_as_pkl(counter_obj):
+def save_as_pkl(meeting_map):
     filepath = os.path.join(DATA_FOLDER, "powell_counts.pkl")
     with open(filepath, "wb") as f:
-        pickle.dump(counter_obj, f)
-    print(f"Analysis saved to {filepath}")
+        pickle.dump(meeting_map, f)
+    print(f"Saved to {filepath}")
 
 
-def save_as_json(counter_obj):
-    sorted_dict = OrderedDict(counter_obj.most_common())
+def save_as_json(meeting_map):
+    sorted_dates = sorted(meeting_map.keys())
+    final_output = OrderedDict()
+
+    for date in sorted_dates:
+        counter = meeting_map[date]
+        sorted_words = OrderedDict(counter.most_common())
+        final_output[date] = sorted_words
+
     filepath = os.path.join(DATA_FOLDER, "powell_counts.json")
     with open(filepath, "w") as f:
-        json.dump(sorted_dict, f, indent=4)
+        json.dump(final_output, f, indent=4)
+    print(f"Saved to {filepath}")
 
 
 def get_powell_text(pdf_file):
@@ -54,17 +62,20 @@ def get_powell_text(pdf_file):
 
 def analysis():
     files = [f for f in os.listdir(FILE_PATH) if f.endswith(".pdf")]
-    master_counts = Counter()
+    meeting_map = {}
 
     for filename in files:
         try:
+            date_match = re.search(r"\d{8}", filename)
+            date_key = date_match.group()
             speech = get_powell_text(filename)
             words = re.findall(r"\b\w+\b", speech.lower())
-            master_counts.update(words)
+            meeting_map[date_key] = Counter(words)
+            print(f"Processed {filename}")
         except Exception as e:
             print(f"Error processing {filename}: {e}")
 
-    return master_counts
+    return meeting_map
 
 
 if __name__ == "__main__":
