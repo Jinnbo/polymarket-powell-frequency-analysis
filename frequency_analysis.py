@@ -8,6 +8,7 @@ import pymupdf
 
 FILE_PATH = "transcripts/"
 DATA_FOLDER = "data"
+TARGET_PHRASES = ["good afternoon", "stock market", "not our job"]
 
 
 def save_as_pkl(meeting_map):
@@ -34,11 +35,10 @@ def save_as_json(meeting_map):
 
 def get_powell_text(pdf_file):
     full_text = ""
-    with pymupdf.open(FILE_PATH + pdf_file) as doc:
+    with pymupdf.open(os.path.join(FILE_PATH, pdf_file)) as doc:
         for page in doc:
             full_text += page.get_text("text")
 
-    # Remove Page Headers and Footers
     full_text = re.sub(r"Page \d+ of \d+", "", full_text)
     full_text = re.sub(r"FINAL", "", full_text)
     full_text = re.sub(
@@ -57,7 +57,20 @@ def get_powell_text(pdf_file):
         if "CHAIR POWELL" in parts[i]:
             powell_blocks.append(parts[i + 1])
 
-    return " ".join(powell_blocks)
+    speech = " ".join(powell_blocks).lower()
+
+    words = re.findall(r"\b\w+\b", speech)
+    counter = Counter(words)
+
+    for phrase in TARGET_PHRASES:
+        phrase_pattern = phrase.replace(" ", r"\s+")
+        pattern = r"\b" + phrase_pattern + r"\b"
+
+        phrase_matches = re.findall(pattern, speech)
+        if phrase_matches:
+            counter[phrase.lower()] = len(phrase_matches)
+
+    return counter
 
 
 def analysis():
@@ -68,9 +81,7 @@ def analysis():
         try:
             date_match = re.search(r"\d{8}", filename)
             date_key = date_match.group()
-            speech = get_powell_text(filename)
-            words = re.findall(r"\b\w+\b", speech.lower())
-            meeting_map[date_key] = Counter(words)
+            meeting_map[date_key] = get_powell_text(filename)
             print(f"Processed {filename}")
         except Exception as e:
             print(f"Error processing {filename}: {e}")
