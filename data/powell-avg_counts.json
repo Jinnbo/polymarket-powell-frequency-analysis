@@ -175,10 +175,6 @@
     "total_count": 1281,
     "avg_count": 26.142857142857142
   },
-  "inflation": {
-    "total_count": 2573,
-    "avg_count": 52.51020408163265
-  },
   "some": {
     "total_count": 758,
     "avg_count": 15.46938775510204
@@ -198,6 +194,10 @@
   "an": {
     "total_count": 630,
     "avg_count": 12.857142857142858
+  },
+  "inflation(s)": {
+    "total_count": 2573,
+    "avg_count": 52.51020408163265
   },
   "well": {
     "total_count": 754,
@@ -243,10 +243,6 @@
     "total_count": 1233,
     "avg_count": 25.163265306122447
   },
-  "percent": {
-    "total_count": 1299,
-    "avg_count": 26.510204081632654
-  },
   "over": {
     "total_count": 702,
     "avg_count": 14.326530612244898
@@ -274,6 +270,10 @@
   "one": {
     "total_count": 663,
     "avg_count": 13.53061224489796
+  },
+  "percent(s)": {
+    "total_count": 1299,
+    "avg_count": 26.510204081632654
   },
   "has": {
     "total_count": 1096,
@@ -695,13 +695,13 @@
     "total_count": 446,
     "avg_count": 9.10204081632653
   },
+  "job(s)": {
+    "total_count": 628,
+    "avg_count": 12.816326530612244
+  },
   "employment": {
     "total_count": 619,
     "avg_count": 12.63265306122449
-  },
-  "job": {
-    "total_count": 431,
-    "avg_count": 8.795918367346939
   },
   "its": {
     "total_count": 202,
@@ -2754,10 +2754,6 @@
   "paying": {
     "total_count": 18,
     "avg_count": 0.3673469387755102
-  },
-  "jobs": {
-    "total_count": 197,
-    "avg_count": 4.020408163265306
   },
   "live": {
     "total_count": 17,
@@ -9027,10 +9023,6 @@
     "total_count": 1,
     "avg_count": 0.02040816326530612
   },
-  "median": {
-    "total_count": 153,
-    "avg_count": 3.122448979591837
-  },
   "honest": {
     "total_count": 12,
     "avg_count": 0.24489795918367346
@@ -9483,10 +9475,6 @@
     "total_count": 1,
     "avg_count": 0.02040816326530612
   },
-  "assumption": {
-    "total_count": 5,
-    "avg_count": 0.10204081632653061
-  },
   "whom": {
     "total_count": 3,
     "avg_count": 0.061224489795918366
@@ -9644,6 +9632,14 @@
     "avg_count": 0.9183673469387755
   },
   "partly": {
+    "total_count": 15,
+    "avg_count": 0.30612244897959184
+  },
+  "median(s)": {
+    "total_count": 158,
+    "avg_count": 3.2244897959183674
+  },
+  "assumption(s)": {
     "total_count": 15,
     "avg_count": 0.30612244897959184
   },
@@ -12326,10 +12322,6 @@
   "bridge": {
     "total_count": 6,
     "avg_count": 0.12244897959183673
-  },
-  "assumptions": {
-    "total_count": 10,
-    "avg_count": 0.20408163265306123
   },
   "credible": {
     "total_count": 9,
@@ -17182,10 +17174,6 @@
   "separated": {
     "total_count": 1,
     "avg_count": 0.02040816326530612
-  },
-  "medians": {
-    "total_count": 5,
-    "avg_count": 0.10204081632653061
   },
   "prelim": {
     "total_count": 1,
@@ -22171,13 +22159,13 @@
     "total_count": 1,
     "avg_count": 0.02040816326530612
   },
+  "tariff(s)": {
+    "total_count": 141,
+    "avg_count": 2.877551020408163
+  },
   "nonmarket": {
     "total_count": 7,
     "avg_count": 0.14285714285714285
-  },
-  "tariffs": {
-    "total_count": 106,
-    "avg_count": 2.163265306122449
   },
   "needlessly": {
     "total_count": 2,
@@ -22230,10 +22218,6 @@
   "considers": {
     "total_count": 1,
     "avg_count": 0.02040816326530612
-  },
-  "tariff": {
-    "total_count": 35,
-    "avg_count": 0.7142857142857143
   },
   "tariffed": {
     "total_count": 8,
