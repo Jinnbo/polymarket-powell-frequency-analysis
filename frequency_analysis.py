@@ -9,6 +9,7 @@ import pymupdf
 FILE_PATH = "transcripts/"
 DATA_FOLDER = "data"
 TARGET_PHRASES = ["good afternoon", "stock market", "not our job"]
+PLURALIZE_WORDS = ["inflation", "percent", "job", "tariff", "median", "assumption"]
 
 
 def save_as_pkl(meeting_map):
@@ -48,7 +49,6 @@ def get_powell_text(pdf_file):
     )
     full_text = re.sub("Chair Powell’s Press Conference", "", full_text)
 
-    # Split parts by speakers
     speaker_pattern = r"(\n?[A-Z]{2,}(?:\s[A-Z]{2,})*\.)"
     parts = re.split(speaker_pattern, full_text)
 
@@ -61,6 +61,20 @@ def get_powell_text(pdf_file):
 
     words = re.findall(r"\b\w+\b", speech)
     counter = Counter(words)
+
+    for word in PLURALIZE_WORDS:
+        singular_count = counter.get(word, 0)
+        plural_word = word + "s"
+        plural_count = counter.get(plural_word, 0)
+
+        if singular_count > 0 or plural_count > 0:
+            combined_key = f"{word}(s)"
+            counter[combined_key] = singular_count + plural_count
+
+            if word in counter:
+                del counter[word]
+            if plural_word in counter:
+                del counter[plural_word]
 
     for phrase in TARGET_PHRASES:
         phrase_pattern = phrase.replace(" ", r"\s+")
